@@ -43,8 +43,12 @@ Challenge is a rails/react app meant to be used with our code challenge assignme
 
 ### Index Page
 
-![image](https://user-images.githubusercontent.com/5751986/138575193-5c8129fe-4bd6-4d08-93e8-606c9d7e6372.png)
+![image](https://user-images.githubusercontent.com/5751986/148653166-031d7c6e-8dc2-4db9-9d28-3db71a8599d9.png)
 
 ### Add Subscriber Modal
 
-![image](https://user-images.githubusercontent.com/5751986/138575195-366d8677-ccf8-482c-aa37-57c2b182ab8b.png)
+![image](https://user-images.githubusercontent.com/5751986/148653171-4a30cf43-5f42-435c-bc68-82f44524ee50.png)
+
+### Update Subscriber Status Modal
+
+![image](https://user-images.githubusercontent.com/5751986/148653182-3a282533-dbb8-4d96-a511-5a5008cf3daf.png)
