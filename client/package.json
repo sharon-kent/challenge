@@ -28,7 +28,7 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "start": "PORT=2001 craco start",
-    "build": "craco build && rm -f ../public/variables.js"
+    "build": "craco build"
   },
   "eslintConfig": {
     "extends": [

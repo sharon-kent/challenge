@@ -11,8 +11,8 @@ end
 
 app = Rack::Builder.new {
   use Rack::Static,
-    urls: ["/fonts", "/img", "/static", "/globalstyle", "/robots.txt"],
-    root: "app/build",
+    urls: ["/static", "/robots.txt"],
+    root: "client/build",
     index: "index.html"
 
   run lambda { |_env|
@@ -21,7 +21,7 @@ app = Rack::Builder.new {
       {
         "Content-Type" => "text/html"
       },
-      File.open("app/build/index.html", File::RDONLY)
+      File.open("client/build/index.html", File::RDONLY)
     ]
   }
 }
