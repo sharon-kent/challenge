@@ -1,8 +1,13 @@
 # This file is used by Rack-based servers to start the application.
 
+require "rack/cors"
 require_relative "config/environment"
 
 Rails.application.load_server
+
+use Rack::Auth::Basic, "Restricted Area" do |username, password|
+  username == "username" && password == "password"
+end
 
 app = Rack::Builder.new {
   use Rack::Static,
