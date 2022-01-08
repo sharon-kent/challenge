@@ -39,6 +39,10 @@ Challenge is a rails/react app meant to be used with our code challenge assignme
     # Run tests
     bundle exec rspec
 
+## Lint It
+
+    bundle exec standardrb
+
 ## What it contains
 
 ### Index Page

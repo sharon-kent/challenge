@@ -25,4 +25,3 @@ run Rack::URLMap.new(
   "/" => app,
   "/api" => Rails.application
 )
-

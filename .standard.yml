@@ -1,0 +1,11 @@
+fix: true
+parallel: true
+format: progress
+default_ignores: false
+ruby_version: 2.7.3
+
+ignore:
+  - "vendor/**/*"
+  - "log/**/*"
+  - "db/schema.rb"
+  - "client/**/*"

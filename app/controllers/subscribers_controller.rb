@@ -9,40 +9,40 @@ class SubscribersController < ApplicationController
     subscribers = [
       {
         id: 1,
-        name: 'Rick Sanchez',
-        email: 'rickc137@citadel.com',
-        status: 'active',
+        name: "Rick Sanchez",
+        email: "rickc137@citadel.com",
+        status: "active"
       },
       {
         id: 2,
-        name: 'Morty Smith',
-        email: 'morty.smith@gmail.com',
-        status: 'inactive'
+        name: "Morty Smith",
+        email: "morty.smith@gmail.com",
+        status: "inactive"
       },
       {
         id: 3,
-        name: 'Jerry Smith',
-        email: 'jerry.smith@aol.com',
-        status: 'active'
+        name: "Jerry Smith",
+        email: "jerry.smith@aol.com",
+        status: "active"
       },
       {
         id: 4,
-        name: 'Beth Smith',
-        email: 'beth.smith@gmail.com',
-        status: 'active'
+        name: "Beth Smith",
+        email: "beth.smith@gmail.com",
+        status: "active"
       },
       {
         id: 5,
-        name: 'Summer Smith',
-        email: 'summer.smith@gmail.com',
-        status: 'active'
+        name: "Summer Smith",
+        email: "summer.smith@gmail.com",
+        status: "active"
       },
       {
         id: 6,
-        name: 'Bird Person',
-        email: 'bird.person@birdworld.com',
-        status: 'active'
-      },
+        name: "Bird Person",
+        email: "bird.person@birdworld.com",
+        status: "active"
+      }
     ]
 
     total_records = subscribers.count
