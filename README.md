@@ -8,7 +8,7 @@ Challenge is a rails/react app meant to be used with our code challenge assignme
 
 #### Server
 - Language
-  - Ruby 2.7
+  - Ruby 3.0.5
   - Rails 6
   - Node 14
 
@@ -31,6 +31,7 @@ Challenge is a rails/react app meant to be used with our code challenge assignme
     # Frontend (http://localhost:2001)
     yarn watch:app
 
+    # view at http://localhost:2001, basic auth is username/password (see `config.ru`)
 ## Test It
 
     # Setup test DB for testing

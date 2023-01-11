@@ -19,10 +19,10 @@ module PaginationMethods
   def limit
     return 100 if params[:per_page].nil?
 
-    params[:per_page].to_i > 100 ? 100 : params[:per_page].to_i
+    (params[:per_page].to_i > 100) ? 100 : params[:per_page].to_i
   end
 
   def offset
-    page === 1 ? 0 : ((page - 1) * limit)
+    (page === 1) ? 0 : ((page - 1) * limit)
   end
 end
