@@ -8,9 +8,9 @@ Challenge is a rails/react app meant to be used with our code challenge assignme
 
 #### Server
 - Language
-  - Ruby 3.0.5
-  - Rails 6
-  - Node 14
+  - Ruby 3.1.2
+  - Rails 6.1
+  - Node 16
 
 # Development Getting Started
 
