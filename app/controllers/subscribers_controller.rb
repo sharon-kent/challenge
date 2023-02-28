@@ -46,7 +46,7 @@ class SubscribersController < ApplicationController
     ]
 
     total_records = subscribers.count
-    limited_subscribers = subscribers.drop(offset).first(limit)
+    limited_subscribers = subscribers[offset..limit]
 
     render json: {subscribers: limited_subscribers, pagination: pagination(total_records)}, formats: :json
   end
