@@ -72,11 +72,12 @@ function App() {
 
   const onSuccessAddSubscriber = () => {
     setShowAddModal(false)
+    refreshSubscribers()
   }
 
-  const onUpdateStatusSelectected = (subscriberId, status) => {
+  const onUpdateStatusSelectected = (subscriberId, active) => {
     setFocusedSubscriberId(subscriberId)
-    setFocusedSubscriberStatus(status)
+    setFocusedSubscriberStatus(active)
   }
 
   const onCloseUpdateStatusSubscriberModal = () => {
@@ -87,6 +88,7 @@ function App() {
   const onSuccessUpdateStatusSubscriber = () => {
     setFocusedSubscriberId('')
     setFocusedSubscriberStatus('')
+    refreshSubscribers()
   }
 
   return (
@@ -102,7 +104,7 @@ function App() {
           onClose={onCloseUpdateStatusSubscriberModal}
           onSuccess={onSuccessUpdateStatusSubscriber}
           subscriberId={focusedSubscriberId}
-          status={focusedSubscriberStatus}
+          active={focusedSubscriberStatus}
         />
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-semibold flex items-center">

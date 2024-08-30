@@ -45,11 +45,11 @@ const SubscriberTable = (props) => {
                     <div className="text-sm text-gray-900">{subscriber.email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <StatusPill value={subscriber.status} />
+                      <StatusPill value={subscriber.active} />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button className="text-primary-gold-600 hover:text-primary-gold-900 underline" onClick={() => onChangeStatusSelected(subscriber.id, subscriber.status)}>
-                        {subscriber.status === 'active' ? 'Unsubscribe' : 'Subscribe'}
+                      <button className="text-primary-gold-600 hover:text-primary-gold-900 underline" onClick={() => onChangeStatusSelected(subscriber.id, subscriber.active)}>
+                        {subscriber.active === '1' ? 'Unsubscribe' : 'Subscribe'}
                       </button>
                     </td>
                   </tr>
@@ -69,7 +69,8 @@ SubscriberTable.propTypes = {
       id: PropTypes.number,
       email: PropTypes.string,
       name: PropTypes.string,
-      status: PropTypes.string
+      // TODO: Make this numeric
+      active: PropTypes.string
     })
   ),
   onChangeStatusSelected: PropTypes.func

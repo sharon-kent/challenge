@@ -1,6 +1,7 @@
 {
   "name": "challenge",
   "version": "0.0.0",
+  "homepage": "https://warm-castle-18762-3b2b7d409266.herokuapp.com",
   "private": true,
   "engines": {
     "node": "16.x"

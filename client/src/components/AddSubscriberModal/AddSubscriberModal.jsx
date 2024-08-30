@@ -2,6 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types'
 import Button, { SecondaryButton } from '../Button'
 import Modal, { ModalBody, ModalFooter } from '../Modal'
+import ErrorModal from "../ErrorModal";
 
 import { createSubscriber } from "../../services/subscriber";
 
@@ -10,6 +11,8 @@ const AddSubscriberModal = (props) => {
   const [isSaving, setIsSaving] = useState(false)
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [showErrorModal, setShowErrorModal] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
     const { target: { name, value }} = e
@@ -20,6 +23,15 @@ const AddSubscriberModal = (props) => {
       setName(value)
     }
   }
+
+  const onOpenErrorModal = () => {
+    setShowErrorModal(true)
+  }
+
+  const onCloseErrorModal = () => {
+    setShowErrorModal(false)
+  }
+
   const onSubmit = () => {
     const payload = {
       email,
@@ -32,8 +44,11 @@ const AddSubscriberModal = (props) => {
       onSuccess()
     })
     .catch((payload) => {
+      onOpenErrorModal()
       const error = payload?.response?.data?.message || 'Something went wrong'
       console.error(error)
+      //TODO Make error message more specific
+      setErrorMessage(error)
     })
     .finally(() => {
       setIsSaving(false)
@@ -55,7 +70,7 @@ const AddSubscriberModal = (props) => {
                 type="email"
                 placeholder="rickc137@citadel.com"
                 onChange={handleChange}
-                value={email}
+                value={email.toLowerCase()}
               />
             </div>
             <div className="mb-4">
@@ -72,6 +87,8 @@ const AddSubscriberModal = (props) => {
               />
             </div>
           </form>
+          <ErrorModal isOpen={showErrorModal} onClose={onCloseErrorModal} errorMessage={errorMessage}>
+          </ErrorModal>
         </ModalBody>
         <ModalFooter>
           <SecondaryButton
