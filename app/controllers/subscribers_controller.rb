@@ -1,49 +1,10 @@
-# frozen_string_literal: true
-
 class SubscribersController < ApplicationController
   include PaginationMethods
+  before_action :set_subscriber, only: [:show, :update, :destroy]
 
-  ##
-  # GET /api/subscribers
+  # GET /subscribers
   def index
-    subscribers = [
-      {
-        id: 1,
-        name: "Rick Sanchez",
-        email: "rickc137@citadel.com",
-        status: "active"
-      },
-      {
-        id: 2,
-        name: "Morty Smith",
-        email: "morty.smith@gmail.com",
-        status: "inactive"
-      },
-      {
-        id: 3,
-        name: "Jerry Smith",
-        email: "jerry.smith@aol.com",
-        status: "active"
-      },
-      {
-        id: 4,
-        name: "Beth Smith",
-        email: "beth.smith@gmail.com",
-        status: "active"
-      },
-      {
-        id: 5,
-        name: "Summer Smith",
-        email: "summer.smith@gmail.com",
-        status: "active"
-      },
-      {
-        id: 6,
-        name: "Bird Person",
-        email: "bird.person@birdworld.com",
-        status: "active"
-      }
-    ]
+    subscribers = Subscriber.all
 
     total_records = subscribers.count
     limited_subscribers = subscribers[offset..limit]
@@ -51,11 +12,40 @@ class SubscribersController < ApplicationController
     render json: {subscribers: limited_subscribers, pagination: pagination(total_records)}, formats: :json
   end
 
+  # POST /subscribers
   def create
-    render json: {message: "Subscriber created successfully"}, formats: :json, status: :created
+    @subscriber = Subscriber.new(subscriber_params)
+
+
+    if @subscriber.save
+      render json: @subscriber, status: :created, location: @subscriber
+    else
+      render json: @subscriber.errors, status: :unprocessable_entity
+    end
   end
 
+  # PATCH/PUT /subscribers/1
   def update
-    render json: {message: "Subscriber updated successfully"}, formats: :json, status: :ok
+    if @subscriber.update(subscriber_params)
+      render json: @subscriber
+    else
+      render json: @subscriber.errors, status: :unprocessable_entity
+    end
   end
+
+  # DELETE /subscribers/1
+  def destroy
+    @subscriber.destroy
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_subscriber
+      @subscriber = Subscriber.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def subscriber_params
+      params.require(:subscriber).permit(:name, :email, :active)
+    end
 end

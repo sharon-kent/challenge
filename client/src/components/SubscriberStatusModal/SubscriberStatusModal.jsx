@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal, { ModalBody, ModalFooter } from '../Modal'
+import ErrorModal from "../ErrorModal";
 import PropTypes from 'prop-types';
 
 // Components
@@ -9,12 +10,23 @@ import Button, { SecondaryButton } from '../Button';
 import { updateSubscriber } from "../../services/subscriber";
 
 const SubscriberStatusModal = (props) => {
-  const { isOpen, onSuccess, onClose, subscriberId, status } = props;
+  const { isOpen, onSuccess, onClose, subscriberId, active } = props;
   const [isDeleting, setIsDeleting] = useState(false)
+  const [showErrorModal, setShowErrorModal] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const onOpenErrorModal = () => {
+    setShowErrorModal(true)
+  }
+
+  const onCloseErrorModal = () => {
+    setShowErrorModal(false)
+  }
 
   const onUpdate = () => {
+    console.log(active)
     const payload = {
-      status: status === 'active' ? 'inactive' : 'active'
+      active: active === '1' ? '0' : '1'
     }
 
     setIsDeleting(true)
@@ -23,20 +35,23 @@ const SubscriberStatusModal = (props) => {
       onSuccess()
     })
     .catch((payload) => {
+      onOpenErrorModal()
       const error = payload?.response?.data?.message || 'Something went wrong'
       console.error(error)
+      //TODO Make error message more specific
+      setErrorMessage(error)
     })
     .finally(() => {
       setIsDeleting(false)
     })
   }
 
-  const modalTitleText = status === 'active' ? 
+  const modalTitleText = active === '1' ?
     "Unsubscribe" : "Resubscribe"
-  const messageBodyText = status === 'active' ? 
+  const messageBodyText = active === '1' ?
     "Are you sure you'd like to unsubscribe this subscriber?" :
     "Are you sure you'd like to resubscribe this subscriber?"
-  const buttonText = status === 'active' ? 
+  const buttonText = active === '1' ?
     "Unsubscribe" : "Resubscribe"
 
   return (
@@ -44,6 +59,8 @@ const SubscriberStatusModal = (props) => {
       <>
         <ModalBody>
           {messageBodyText}
+          <ErrorModal isOpen={showErrorModal} onClose={onCloseErrorModal} errorMessage={errorMessage}>
+          </ErrorModal>
         </ModalBody>
         <ModalFooter>
           <SecondaryButton
@@ -70,7 +87,8 @@ SubscriberStatusModal.propTypes = {
   onClose: PropTypes.func,
   onSuccess: PropTypes.func,
   subscriberId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  status: PropTypes.string
+  // TODO: Make this numeric
+  active: PropTypes.string
 }
 
 export default SubscriberStatusModal;
